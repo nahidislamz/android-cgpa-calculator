@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CGPA CALCULATOR</string>
+    <string name="tab_text_1">CGPA</string>
+    <string name="tab_text_2">SGPA</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="grade">Grade</string>
+    <string name="credit">Credit</string>
+    <string name="clear">clear</string>
+    <string name="calculate">Calculate</string>
+    <string name="add_course">Add Course</string>
+    <string name="reset">Reset</string>
+</resources>
