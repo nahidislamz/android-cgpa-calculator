@@ -39,6 +39,7 @@ public class CgpaFragment extends Fragment {
         layoutList = root.findViewById(R.id.layout_list);
         buttonAdd = root.findViewById(R.id.button_add);
         buttonCalculate = root.findViewById(R.id.calculate_cgpa);
+        gradeList.add("A+  (4.00)");
         gradeList.add("A  (3.75)");
         gradeList.add("A-  (3.50)");
         gradeList.add("B+  (3.25)");
