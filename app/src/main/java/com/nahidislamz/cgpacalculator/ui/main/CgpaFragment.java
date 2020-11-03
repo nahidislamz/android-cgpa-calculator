@@ -22,15 +22,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.R.layout.simple_spinner_item;
+import static java.lang.Double.parseDouble;
 
 
 public class CgpaFragment extends Fragment {
 
     LinearLayout layoutList;
-    Button buttonAdd;
+    Button buttonAdd,buttonReset;
     Button buttonCalculate;
     List<String> gradeList = new ArrayList<>();
-
+    ArrayList<Grades> gradesArrayList = new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class CgpaFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_cgpa, container, false);
         layoutList = root.findViewById(R.id.layout_list);
         buttonAdd = root.findViewById(R.id.button_add);
+        buttonReset = root.findViewById(R.id.button_reset);
         buttonCalculate = root.findViewById(R.id.calculate_cgpa);
         gradeList.add("A+  (4.00)");
         gradeList.add("A  (3.75)");
@@ -54,12 +56,16 @@ public class CgpaFragment extends Fragment {
         buttonAdd.setOnClickListener((View.OnClickListener) v -> {
             addViewFun();
         });
+        buttonReset.setOnClickListener((View.OnClickListener) v -> {
+            layoutList.removeAllViews();
+            addViewFun();addViewFun();
+        });
 
         return root;
     }
     private  void addViewFun(){
         View addTextView = getLayoutInflater().inflate(R.layout.row_edittext,null,false);
-        EditText editText = (EditText)addTextView.findViewById(R.id.credit);
+        EditText creditText = (EditText)addTextView.findViewById(R.id.credit);
         AppCompatSpinner spinnerTeam = (AppCompatSpinner)addTextView.findViewById(R.id.spinner_grade);
         ImageButton closeButton = (ImageButton) addTextView.findViewById(R.id.remove);
         closeButton.setOnClickListener(v -> layoutList.removeView(addTextView));
@@ -70,5 +76,33 @@ public class CgpaFragment extends Fragment {
         layoutList.addView(addTextView);
 
     }
+
+    private boolean checkIfValidAndRead() {
+        boolean result = true;
+        gradesArrayList.clear();
+        for(int i=0;i<layoutList.getChildCount();i++){
+
+            View addTextView = layoutList.getChildAt(i);
+            EditText creditText = (EditText)addTextView.findViewById(R.id.credit);
+            AppCompatSpinner spinnerTeam = (AppCompatSpinner)addTextView.findViewById(R.id.spinner_grade);
+            Grades grades = new Grades();
+
+
+
+
+
+        }
+
+        if(gradesArrayList.size()==0){
+            result = false;
+            Toast.makeText(getContext(), "Add Cricketers First!", Toast.LENGTH_SHORT).show();
+        }else if(!result){
+            Toast.makeText(getContext(), "Enter All Details Correctly!", Toast.LENGTH_SHORT).show();
+        }
+
+
+        return result;
+    }
+
 
 }
