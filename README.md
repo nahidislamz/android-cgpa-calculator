@@ -1,8 +1,8 @@
 # android-cgpa-calculator
 
-###an open source app for android
+### an open source app for android
 
-##Features:
--CGPA CALCULATION
--SGPA CALCULATION
+## Features:
+- CGPA CALCULATION
+- SGPA CALCULATION
 
