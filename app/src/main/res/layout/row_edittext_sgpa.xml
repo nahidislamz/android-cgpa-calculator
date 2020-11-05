@@ -26,8 +26,17 @@
         android:layout_height="wrap_content"
         android:background="@drawable/round_grey">
 
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/spinner_grade"
+        <EditText
+            android:id="@+id/sgpa"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:inputType="numberDecimal"
+            android:background="@drawable/round_grey"
+            android:layout_weight="1"
+            android:hint="@string/sgpa"
+            android:textSize="14sp"
+            android:paddingStart="10dp"
+            android:textColor="@color/white"
             android:layout_width="150dp"
             android:layout_height="40dp" />
     </FrameLayout>

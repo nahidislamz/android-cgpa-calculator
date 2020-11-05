@@ -27,27 +27,16 @@ public class SgpaFragment extends Fragment {
     LinearLayout layoutList;
     Button buttonAdd,buttonReset;
     Button buttonCalculate;
-    List<String> gradeList = new ArrayList<>();
-    ArrayList<Grades> gradesArrayList = new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_sgpa, container, false);
+        View root = inflater.inflate(R.layout.fragment_cgpa, container, false);
         layoutList = root.findViewById(R.id.layout_list);
         buttonAdd = root.findViewById(R.id.button_add);
         buttonReset = root.findViewById(R.id.button_reset);
         buttonCalculate = root.findViewById(R.id.calculate_cgpa);
-        gradeList.add("A+  (4.00)");
-        gradeList.add("A  (3.75)");
-        gradeList.add("A-  (3.50)");
-        gradeList.add("B+  (3.25)");
-        gradeList.add("B  (3.00)");
-        gradeList.add("B-  (2.75)");
-        gradeList.add("C+  (2.50)");
-        gradeList.add("C  (2.25)");
-        gradeList.add("D  (2.00)");
-        gradeList.add("F  (0.00)");
+
         addViewFun();addViewFun();
 
         buttonAdd.setOnClickListener((View.OnClickListener) v -> {
@@ -61,47 +50,12 @@ public class SgpaFragment extends Fragment {
         return root;
     }
     private  void addViewFun(){
-        View addTextView = getLayoutInflater().inflate(R.layout.row_edittext,null,false);
+        View addTextView = getLayoutInflater().inflate(R.layout.row_edittext_sgpa,null,false);
         EditText creditText = (EditText)addTextView.findViewById(R.id.credit);
-        AppCompatSpinner spinnerTeam = (AppCompatSpinner)addTextView.findViewById(R.id.spinner_grade);
+        EditText SGPAText = (EditText)addTextView.findViewById(R.id.sgpa);
         ImageButton closeButton = (ImageButton) addTextView.findViewById(R.id.remove);
         closeButton.setOnClickListener(v -> layoutList.removeView(addTextView));
-
-
-        ArrayAdapter arrayAdapter = new ArrayAdapter(getContext(), simple_spinner_item,gradeList);
-        spinnerTeam.setAdapter(arrayAdapter);
         layoutList.addView(addTextView);
 
     }
-
-    private boolean checkIfValidAndRead() {
-        boolean result = true;
-        gradesArrayList.clear();
-        for(int i=0;i<layoutList.getChildCount();i++){
-
-            View addTextView = layoutList.getChildAt(i);
-            EditText creditText = (EditText)addTextView.findViewById(R.id.credit);
-            AppCompatSpinner spinnerTeam = (AppCompatSpinner)addTextView.findViewById(R.id.spinner_grade);
-            Grades grades = new Grades();
-
-
-
-
-
-        }
-
-        if(gradesArrayList.size()==0){
-            result = false;
-            Toast.makeText(getContext(), "Add Cricketers First!", Toast.LENGTH_SHORT).show();
-        }else if(!result){
-            Toast.makeText(getContext(), "Enter All Details Correctly!", Toast.LENGTH_SHORT).show();
-        }
-
-
-        return result;
-    }
-
-
-
-
 }

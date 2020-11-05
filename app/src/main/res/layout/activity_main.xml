@@ -24,7 +24,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="32dp"
+            android:padding="12dp"
             android:clipToPadding="false">
         <View
             android:id="@+id/indicator"

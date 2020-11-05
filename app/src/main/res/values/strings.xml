@@ -10,4 +10,5 @@
     <string name="calculate">Calculate</string>
     <string name="add_course">Add Course</string>
     <string name="reset">Reset</string>
+    <string name="sgpa">SGPA</string>
 </resources>
