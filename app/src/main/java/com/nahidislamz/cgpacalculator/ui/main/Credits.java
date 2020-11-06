@@ -1,51 +1,49 @@
 package com.nahidislamz.cgpacalculator.ui.main;
 
-import java.io.Serializable;
-
-public class Credits implements Serializable {
-    float credits,grades,totalCredits,totalPoints;
+public class Credits{
+    double credits ,grades,totalCredits,totalPoints;
 
     public Credits() {
     }
 
-    public float getTotalPoints() {
+    public double getTotalPoints() {
         return totalPoints;
     }
 
-    public void setTotalPoints(float totalPoints) {
+    public void setTotalPoints(double totalPoints) {
         this.totalPoints = totalPoints;
     }
 
-    public Credits(float credits, float grades) {
+    public Credits(double credits, double grades) {
         this.credits = credits;
         this.grades = grades;
     }
 
-    public float getCredits() {
+    public double getCredits() {
         return credits;
     }
 
-    public void setCredits(float credits) {
+    public void setCredits(double credits) {
         this.credits = credits;
     }
 
-    public float getGrades() {
+    public double getGrades() {
         return grades;
     }
 
-    public void setGrades(float grades) {
+    public void setGrades(double grades) {
         this.grades = grades;
     }
 
-    public float getPoints() {
+    public double getPoints() {
         return getGrades()*getCredits();
     }
 
-    public float getTotalCredits() {
+    public double getTotalCredits() {
         return totalCredits;
     }
 
-    public void setTotalCredits(float totalCredits) {
+    public void setTotalCredits(double totalCredits) {
         this.totalCredits = totalCredits;
     }
 }

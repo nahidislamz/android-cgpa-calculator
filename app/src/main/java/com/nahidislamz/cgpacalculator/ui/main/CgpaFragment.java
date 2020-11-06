@@ -1,11 +1,8 @@
 package com.nahidislamz.cgpacalculator.ui.main;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.nahidislamz.cgpacalculator.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,14 +22,10 @@ import static android.R.layout.simple_spinner_item;
 
 public class CgpaFragment extends Fragment {
 
-    LinearLayout layoutList;
-    Button buttonAdd,buttonReset;
-    Button buttonCalculate;
-    List<String> gradeList = new ArrayList<>();
-    ArrayList<Credits> creditsList = new ArrayList<>();
-    float grade = (float) 0.00;
-    float totalCredits = (float) 0.00;
-    float CGPA = (float) 0.00;
+    private LinearLayout layoutList;
+    private final List<String> gradeList = new ArrayList<>();
+    private final ArrayList<Credits> creditsList = new ArrayList<>();
+    private double grade = 0.00;
 
 
 
@@ -44,9 +35,9 @@ public class CgpaFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_cgpa, container, false);
         layoutList = root.findViewById(R.id.layout_list);
-        buttonAdd = root.findViewById(R.id.button_add);
-        buttonReset = root.findViewById(R.id.button_reset);
-        buttonCalculate = root.findViewById(R.id.calculate_cgpa);
+        Button buttonAdd = root.findViewById(R.id.button_add);
+        Button buttonReset = root.findViewById(R.id.button_reset);
+        Button buttonCalculate = root.findViewById(R.id.calculate_cgpa);
         gradeList.add("SELECT GPA");
         gradeList.add("A+  (4.00)");
         gradeList.add("A  (3.75)");
@@ -59,10 +50,10 @@ public class CgpaFragment extends Fragment {
         gradeList.add("D  (2.00)");
         gradeList.add("F  (0.00)");
         addViewFun();addViewFun();
-        buttonAdd.setOnClickListener((View.OnClickListener) v -> {
+        buttonAdd.setOnClickListener(v -> {
             addViewFun();
         });
-        buttonReset.setOnClickListener((View.OnClickListener) v -> {
+        buttonReset.setOnClickListener(v -> {
             layoutList.removeAllViews();
             addViewFun();addViewFun();
         });
@@ -76,9 +67,9 @@ public class CgpaFragment extends Fragment {
     }
     private  void addViewFun(){
         View addTextView = getLayoutInflater().inflate(R.layout.row_edittext,null,false);
-        EditText creditText = (EditText)addTextView.findViewById(R.id.credit);
-        AppCompatSpinner spinnerTeam = (AppCompatSpinner)addTextView.findViewById(R.id.spinner_grade);
-        ImageButton closeButton = (ImageButton) addTextView.findViewById(R.id.remove);
+        EditText creditText = addTextView.findViewById(R.id.credit);
+        AppCompatSpinner spinnerTeam = addTextView.findViewById(R.id.spinner_grade);
+        ImageButton closeButton = addTextView.findViewById(R.id.remove);
         closeButton.setOnClickListener(v -> layoutList.removeView(addTextView));
 
 
@@ -90,14 +81,15 @@ public class CgpaFragment extends Fragment {
     }
 
     private void checkAndRead() {
+
         creditsList.clear();
         for(int i=0;i<layoutList.getChildCount();i++){
             View addTextView = layoutList.getChildAt(i);
-            EditText creditText = (EditText)addTextView.findViewById(R.id.credit);
-            AppCompatSpinner spinnerGrade = (AppCompatSpinner)addTextView.findViewById(R.id.spinner_grade);
+            EditText creditText = addTextView.findViewById(R.id.credit);
+            AppCompatSpinner spinnerGrade = addTextView.findViewById(R.id.spinner_grade);
             Credits credits = new Credits();
             if(!creditText.getText().toString().equals("")){
-                credits.setCredits(Float.parseFloat(creditText.getText().toString()));
+                credits.setCredits(Double.parseDouble(creditText.getText().toString()));
 
             }else {
                 Toast.makeText(getContext(),"Enter Credits", Toast.LENGTH_LONG).show();
@@ -106,7 +98,48 @@ public class CgpaFragment extends Fragment {
             spinnerGrade.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    grade = gradeChooser(position);
+                    switch (position){
+                        case 1:
+                            grade = 4.00;
+                            break;
+
+                        case 2:
+                            grade = 3.75;
+                            break;
+
+                        case 3:
+                            grade = 3.50;
+                            break;
+
+                        case 4:
+                            grade = 3.25;
+                            break;
+
+                        case 5:
+                            grade = 3.00;
+                            break;
+
+                        case 6:
+                            grade =  2.75;
+                            break;
+
+                        case 7:
+                            grade = 2.50;
+                            break;
+
+                        case 8:
+                            grade = 2.25;
+                            break;
+
+                        case 9:
+                            grade = 2.00;
+                            break;
+                        default:
+                            grade = 0.00;
+                    }
+
+                    Toast.makeText(getContext(),"Grade Selected"+grade, Toast.LENGTH_LONG).show();
+
                     credits.setGrades(grade);
                 }
 
@@ -125,66 +158,58 @@ public class CgpaFragment extends Fragment {
 
     }
 
-    private float gradeChooser(int value) {
+    /*private double gradeChooser(int value) {
         switch (value){
             case 1:
-                return (float) 4.00;
+                return 4.00;
 
             case 2:
-                return (float) 3.75;
+                return 3.75;
 
             case 3:
-                return (float) 3.50;
+                return 3.50;
 
             case 4:
-                return (float) 3.25;
+                return 3.25;
 
             case 5:
-                return (float) 3.00;
+                return 3.00;
 
             case 6:
-                return (float) 2.75;
+                return 2.75;
 
             case 7:
-                return (float) 2.50;
+                return 2.50;
 
             case 8:
-                return (float) 2.25;
+                return 2.25;
 
             case 9:
-                return (float) 2.00;
+                return 2.00;
 
         }
-        return 0;
+        return 0.00;
 
-    }
+    }*/
 
     private void calculateCGPA(){
         checkAndRead();
-        Credits temp ;
         int totalCourse = creditsList.size();
-        float totalPoints = (float) 0.00;
-        totalCredits = (float) 0.00;
-        CGPA = (float) 0.00;
+        double totalCredits = 0.00;
+        double totalPoints = 0.00;
+        double CGPA;
+        Credits temp ;
+
         for (int j=0;j<creditsList.size();j++){
             temp = creditsList.get(j);
-            totalCredits+=temp.getCredits();
-            totalPoints += temp.getCredits()*temp.getGrades();
+            totalCredits= totalCredits + temp.getCredits();
+            totalPoints = totalPoints + (temp.getGrades()*temp.getCredits());
         }
 
-        CGPA = (float) (totalPoints/totalCredits);
+        CGPA = totalPoints/totalCredits;
 
         String cgpaText = String.format("CGPA: %.2f",CGPA);
 
-        /*new AlertDialog.Builder(getContext())
-                .setTitle("CGPA CALCULATOR")
-                .setMessage("Total Course: \t"+totalCourse+"\n\nTotal Credits : \t"+totalCredits+
-                        "\n\nTotal Points : \t"+ totalPoints+"\n\n______________________________\n\n  \t\t"+ cgpaText )
-                .setCancelable(false)
-                .setPositiveButton("Ok", (dialog, which) -> {
-                   dialog.dismiss();
-                })
-                .show();*/
         new ViewDialog().showDialog(getActivity(), totalCourse,String.valueOf(totalCredits),String.valueOf(totalPoints),cgpaText);
     }
 
